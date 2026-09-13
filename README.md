@@ -3,6 +3,7 @@
 ## 固件默认配置
 
 默认主题： Argon。
+
 集成插件：
 - luci-app-store
 - luci-app-openclash
