@@ -13,10 +13,6 @@
 - luci-app-upnp
 - luci-app-wireguard
 
-访问地址：
+访问地址：192.168.1.1
 
-192.168.1.1
-
-帐号密码：
-
-root/无
+帐号密码：root/无
