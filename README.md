@@ -62,3 +62,10 @@ Config——自定义配置
 
 #
 [![Stargazers over time](https://starchart.cc/VIKINGYFY/OpenWRT-CI.svg?variant=adaptive)](https://starchart.cc/VIKINGYFY/OpenWRT-CI)
+
+## 301W 默认设置
+
+主题为 Argon，登录背景从 Bing 下载；时区为 Asia/Shanghai，界面语言为简体中文。
+
+集成 iStore、OpenClash、MosDNS、EasyTier、Lucky、UPnP 和 WireGuard。
+WireGuard 使用当前上游的 `luci-proto-wireguard`、`wireguard-tools` 和 `kmod-wireguard`。

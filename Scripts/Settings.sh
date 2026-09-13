@@ -62,3 +62,19 @@ if [[ "${WRT_TARGET^^}" == *"QUALCOMMAX"* ]]; then
 		echo "qualcommax set up nowifi successfully!"
 	fi
 fi
+
+#写入固件首次启动默认设置
+mkdir -p ./files/etc/uci-defaults
+cat > ./files/etc/uci-defaults/99-qnap-301w-defaults <<'EOF'
+#!/bin/sh
+uci set system.@system[0].timezone='CST-8'
+uci set system.@system[0].zonename='Asia/Shanghai'
+uci set luci.main.lang='zh_cn'
+uci set luci.main.mediaurlbase='/luci-static/argon'
+uci set argon.@global[0].online_wallpaper='bing'
+uci commit system
+uci commit luci
+uci commit argon
+exit 0
+EOF
+chmod 0755 ./files/etc/uci-defaults/99-qnap-301w-defaults

@@ -196,6 +196,12 @@ jobs:
           grep -qx 'CONFIG_TARGET_qualcommax_ipq807x=y' .config
           ! grep -qx 'CONFIG_TARGET_ALL_PROFILES=y' .config
 
+          # 缺失源码或依赖时立即失败，避免生成少插件的固件。
+          for PACKAGE in luci-theme-argon luci-app-argon-config luci-app-store luci-app-openclash luci-app-mosdns luci-app-easytier luci-app-lucky luci-app-upnp luci-proto-wireguard wireguard-tools kmod-wireguard; do
+            grep -qx "CONFIG_PACKAGE_${PACKAGE}=y" .config || { echo "Required package missing: $PACKAGE"; exit 1; }
+          done
+          grep -qx 'CONFIG_LUCI_LANG_zh_Hans=y' .config
+
           make clean -j$(nproc)
 
       - name: Download Packages
