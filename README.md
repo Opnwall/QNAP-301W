@@ -12,3 +12,6 @@
 - luci-app-lucky
 - luci-app-upnp
 - luci-app-wireguard
+
+访问地址：
+192.168.1.1
