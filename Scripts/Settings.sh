@@ -67,6 +67,28 @@ fi
 mkdir -p ./files/etc/uci-defaults
 cat > ./files/etc/uci-defaults/99-qnap-301w-defaults <<'EOF'
 #!/bin/sh
+#先生成无线配置，再设置开放的默认 Wi-Fi。
+[ -s /etc/config/wireless ] || wifi config
+. /lib/functions.sh
+set_radio_defaults() {
+    uci set "wireless.$1.disabled=0"
+}
+set_wifi_defaults() {
+    uci set "wireless.$1.ssid=301W"
+    uci set "wireless.$1.encryption=none"
+    uci set "wireless.$1.disabled=0"
+    uci -q delete "wireless.$1.key"
+}
+config_load wireless
+config_foreach set_radio_defaults wifi-device
+config_foreach set_wifi_defaults wifi-iface
+uci commit wireless
+
+uci set system.@system[0].hostname='QNAP-301W'
+uci set network.lan.ipaddr='192.168.1.1'
+uci commit network
+#OpenWrt 默认管理帐号为 root，清除默认密码。
+passwd -d root
 uci set system.@system[0].timezone='CST-8'
 uci set system.@system[0].zonename='Asia/Shanghai'
 uci set luci.main.lang='zh_cn'
