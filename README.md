@@ -48,7 +48,9 @@ https://drive.wrt.moe/uboot/mediatek
 
 固件信息里的时间为编译开始的时间，方便核对上游源码提交时间。
 
-MEDIATEK系列、QUALCOMMAX系列、ROCKCHIP系列、X86系列。
+本仓库仅编译 QNAP 301W（qualcommax/ipq807x，带 Wi-Fi）固件。
+
+自动或手动编译使用 `QNAP-301W` 工作流；`WRT-TEST` 默认仅输出 301W 配置。
 
 # 目录简要说明
 

@@ -71,6 +71,10 @@ jobs:
       - name: Checkout Projects
         uses: actions/checkout@main
 
+      - name: Validate Build Target
+        run: |
+          test "$WRT_CONFIG" = "QNAP-301W" || { echo "Only QNAP-301W builds are supported"; exit 1; }
+
       - name: Initialization Environment
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -183,7 +187,16 @@ jobs:
 
           $GITHUB_WORKSPACE/Scripts/Settings.sh
 
-          make defconfig -j$(nproc) && make clean -j$(nproc)
+          make defconfig -j$(nproc)
+
+          # 最终配置必须只选择 QNAP 301W，防止扩展配置引入其他设备。
+          SELECTED_DEVICES=$(grep -E '^CONFIG_TARGET_DEVICE_.*=y$' .config)
+          test "$SELECTED_DEVICES" = 'CONFIG_TARGET_DEVICE_qualcommax_ipq807x_DEVICE_qnap_301w=y'
+          grep -qx 'CONFIG_TARGET_qualcommax=y' .config
+          grep -qx 'CONFIG_TARGET_qualcommax_ipq807x=y' .config
+          ! grep -qx 'CONFIG_TARGET_ALL_PROFILES=y' .config
+
+          make clean -j$(nproc)
 
       - name: Download Packages
         if: ${{ !inputs.WRT_TEST }}
@@ -251,9 +264,8 @@ jobs:
           tag_name: ${{env.WRT_CONFIG}}-${{env.WRT_INFO}}-${{env.WRT_BRANCH}}-${{env.WRT_DATE}}
           files: ./wrt/upload/*.*
           body: |
-            这是个平台固件包，内含多个设备！
-            请注意选择你需要的设备固件！
-            不要问，刷就完事了！
+            本固件仅适用于 QNAP 301W（带 Wi-Fi）。
+            请核对设备型号后再刷入。
 
             全系带开源硬件加速，别问了！
 
