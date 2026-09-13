@@ -1,71 +1,7 @@
-# 高质量<免费>交流群
+# 适用于QNAP-301W的固件
 
-[IPQ技术讨论群](https://qm.qq.com/q/v7nMhzB4oU)
-
-# 高质量<付费>中转站
-
-[LiBwrt-Ai](https://api.zipimg.cn/register?aff=LR7FSZ2ZZ4D3)
-
-# 本地编译器
-
-https://github.com/VIKINGYFY/OWRT-Tools.git
-
-# 自用修改版插件
-
-https://github.com/VIKINGYFY/packages.git
-
-# OpenWRT-CI
-
-官方版：
-
-https://github.com/immortalwrt/immortalwrt.git
-
-自用版：
-
-https://github.com/VIKINGYFY/immortalwrt.git
-
-# U-BOOT
-
-高通版-沉心：
-
-https://github.com/chenxin527/uboot-qsdk12.5-build.git
-
-高通版-小猪：
-
-https://github.com/1980490718/u-boot-2016.git
-
-联发科-全新版：
-
-https://github.com/VIKINGYFY/UBOOT-CI/releases
-
-联发科-官方版：
-
-https://drive.wrt.moe/uboot/mediatek
-
-# 固件简要说明
-
-固件每天早上5点自动编译。
-
-固件信息里的时间为编译开始的时间，方便核对上游源码提交时间。
-
-本仓库仅编译 QNAP 301W（qualcommax/ipq807x，带 Wi-Fi）固件。
-
-自动或手动编译使用 `QNAP-301W` 工作流；`WRT-TEST` 默认仅输出 301W 配置。
-
-# 目录简要说明
-
-workflows——自定义CI配置
-
-Scripts——自定义脚本
-
-Config——自定义配置
-
-#
-[![Stargazers over time](https://starchart.cc/VIKINGYFY/OpenWRT-CI.svg?variant=adaptive)](https://starchart.cc/VIKINGYFY/OpenWRT-CI)
-
-## 301W 默认设置
+## 固件默认配置
 
 主题为 Argon，登录背景从 Bing 下载；时区为 Asia/Shanghai，界面语言为简体中文。
 
-集成 iStore、OpenClash、MosDNS、EasyTier、Lucky、UPnP 和 WireGuard。
-WireGuard 使用当前上游的 `luci-proto-wireguard`、`wireguard-tools` 和 `kmod-wireguard`。
+集成 iStore、OpenClash、MosDNS、EasyTier、Lucky、UPnP 和 WireGuard 插件。
