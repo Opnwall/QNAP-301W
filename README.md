@@ -2,7 +2,7 @@
 
 ## 默认配置
 
-默认：Argon
+主题：Argon
 
 集成插件：
 - luci-app-store
