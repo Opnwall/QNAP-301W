@@ -6,11 +6,9 @@ name: QNAP-301W
 
 #CI计划
 on:
-  #自动编译：当Auto-Clean运行完成后
-  workflow_run:
-    workflows: ["Auto-Clean"]
-    types:
-      - completed
+  #自动编译：每周五北京时间03:00（UTC每周四19:00）
+  schedule:
+    - cron: '0 19 * * 4'
   #手动编译
   workflow_dispatch:
     inputs:
